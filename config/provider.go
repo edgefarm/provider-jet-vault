@@ -24,6 +24,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
 	"github.com/crossplane-contrib/provider-jet-vault/config/generic"
+	"github.com/crossplane-contrib/provider-jet-vault/config/identity"
 )
 
 const (
@@ -47,10 +48,12 @@ func GetProvider() *tjconfig.Provider {
 		tjconfig.WithDefaultResourceFn(defaultResourceFn),
 		tjconfig.WithIncludeList([]string{
 			"vault_generic_secret$",
+			"vault_identity_entity$",
 		}))
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		generic.Configure,
+		identity.Configure,
 	} {
 		configure(pc)
 	}

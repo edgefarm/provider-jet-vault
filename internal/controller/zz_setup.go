@@ -22,6 +22,7 @@ import (
 	"github.com/crossplane/terrajet/pkg/controller"
 
 	secret "github.com/crossplane-contrib/provider-jet-vault/internal/controller/generic/secret"
+	entity "github.com/crossplane-contrib/provider-jet-vault/internal/controller/identity/entity"
 	providerconfig "github.com/crossplane-contrib/provider-jet-vault/internal/controller/providerconfig"
 )
 
@@ -30,6 +31,7 @@ import (
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		secret.Setup,
+		entity.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
