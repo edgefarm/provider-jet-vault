@@ -1,0 +1,13 @@
+---
+apiVersion: mount.vault.jet.crossplane.io/v1alpha1
+kind: Mount
+metadata:
+  name: example
+spec:
+  forProvider:
+    path: "pki-example"
+    type: "pki"
+    description: "This is an example PKI mount"
+    defaultLeaseTtlSeconds: 3600
+    maxLeaseTtlSeconds: 86400
+
