@@ -1,0 +1,24 @@
+---
+apiVersion: mount.vault.jet.crossplane.io/v1alpha1
+kind: Mount
+metadata:
+  name: "pki-example"
+spec:
+  forProvider:
+    path: "pki-example"
+    type: "pki"
+    description: "This is an example PKI mount"
+    defaultLeaseTtlSeconds: 3600
+    maxLeaseTtlSeconds: 86400
+---
+apiVersion: pki.vault.jet.crossplane.io/v1alpha1
+kind: SecretBackendConfigUrls
+metadata:
+  name: "pki-example-config-urls"
+spec:
+  forProvider:
+    issuingCertificates: 
+     - "http://127.0.0.1:8200/v1/pki-example/ca"
+    backendRef:
+      name: pki-example
+

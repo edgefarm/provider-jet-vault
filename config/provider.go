@@ -25,6 +25,7 @@ import (
 
 	"github.com/crossplane-contrib/provider-jet-vault/config/generic"
 	"github.com/crossplane-contrib/provider-jet-vault/config/mount"
+	"github.com/crossplane-contrib/provider-jet-vault/config/pki"
 )
 
 const (
@@ -34,6 +35,19 @@ const (
 
 //go:embed schema.json
 var providerSchema string
+
+// IncludedResources lists all resource patterns included in small set release.
+var IncludedResources = []string{
+
+	// vault_generic
+	"vault_generic_secret$",
+
+	// vault_mount
+	"vault_mount$",
+
+	// vault_pki_secret_backend
+	"vault_pki_secret_backend_config_urls$",
+}
 
 // GetProvider returns provider configuration
 func GetProvider() *tjconfig.Provider {
@@ -46,14 +60,12 @@ func GetProvider() *tjconfig.Provider {
 
 	pc := tjconfig.NewProviderWithSchema([]byte(providerSchema), resourcePrefix, modulePath,
 		tjconfig.WithDefaultResourceFn(defaultResourceFn),
-		tjconfig.WithIncludeList([]string{
-			"vault_generic_secret$",
-			"vault_mount$",
-		}))
+		tjconfig.WithIncludeList(IncludedResources))
 
 	for _, configure := range []func(provider *tjconfig.Provider){
 		generic.Configure,
 		mount.Configure,
+		pki.Configure,
 	} {
 		configure(pc)
 	}
