@@ -50,3 +50,29 @@ func (mg *SecretBackendConfigUrls) ResolveReferences(ctx context.Context, c clie
 
 	return nil
 }
+
+// ResolveReferences of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Backend),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.BackendRef,
+		Selector:     mg.Spec.ForProvider.BackendSelector,
+		To: reference.To{
+			List:    &v1alpha1.MountList{},
+			Managed: &v1alpha1.Mount{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Backend")
+	}
+	mg.Spec.ForProvider.Backend = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.BackendRef = rsp.ResolvedReference
+
+	return nil
+}

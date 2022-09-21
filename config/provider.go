@@ -47,6 +47,7 @@ var IncludedResources = []string{
 
 	// vault_pki_secret_backend
 	"vault_pki_secret_backend_config_urls$",
+	"vault_pki_secret_backend_root_cert$",
 }
 
 // GetProvider returns provider configuration

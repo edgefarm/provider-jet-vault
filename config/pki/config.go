@@ -13,4 +13,14 @@ func Configure(p *config.Provider) {
 			Type: "github.com/crossplane-contrib/provider-jet-vault/apis/mount/v1alpha1.Mount",
 		}
 	})
+
+	p.AddResourceConfigurator("vault_pki_secret_backend_root_cert", func(r *config.Resource) {
+
+		// we need to map data_json properly
+		r.ExternalName = config.IdentifierFromProvider
+
+		r.References["backend"] = config.Reference{
+			Type: "github.com/crossplane-contrib/provider-jet-vault/apis/mount/v1alpha1.Mount",
+		}
+	})
 }

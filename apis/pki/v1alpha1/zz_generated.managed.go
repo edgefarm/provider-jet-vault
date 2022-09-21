@@ -84,3 +84,69 @@ func (mg *SecretBackendConfigUrls) SetPublishConnectionDetailsTo(r *xpv1.Publish
 func (mg *SecretBackendConfigUrls) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
+
+// GetCondition of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetProviderConfigReference of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+/*
+GetProviderReference of this SecretBackendRootCert.
+Deprecated: Use GetProviderConfigReference.
+*/
+func (mg *SecretBackendRootCert) GetProviderReference() *xpv1.Reference {
+	return mg.Spec.ProviderReference
+}
+
+// GetPublishConnectionDetailsTo of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetProviderConfigReference of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+/*
+SetProviderReference of this SecretBackendRootCert.
+Deprecated: Use SetProviderConfigReference.
+*/
+func (mg *SecretBackendRootCert) SetProviderReference(r *xpv1.Reference) {
+	mg.Spec.ProviderReference = r
+}
+
+// SetPublishConnectionDetailsTo of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this SecretBackendRootCert.
+func (mg *SecretBackendRootCert) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}

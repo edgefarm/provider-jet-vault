@@ -21,4 +21,16 @@ spec:
      - "http://127.0.0.1:8200/v1/pki-example/ca"
     backendRef:
       name: pki-example
+---
+apiVersion: pki.vault.jet.crossplane.io/v1alpha1
+kind: SecretBackendRootCert
+metadata:
+  name: "pki-example-root-cert"
+spec:
+  forProvider:
+    commonName: "Root CA"
+    type: "internal"
+    backendRef:
+      name: pki-example
+
 

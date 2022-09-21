@@ -24,6 +24,7 @@ import (
 	secret "github.com/crossplane-contrib/provider-jet-vault/internal/controller/generic/secret"
 	mount "github.com/crossplane-contrib/provider-jet-vault/internal/controller/mount/mount"
 	secretbackendconfigurls "github.com/crossplane-contrib/provider-jet-vault/internal/controller/pki/secretbackendconfigurls"
+	secretbackendrootcert "github.com/crossplane-contrib/provider-jet-vault/internal/controller/pki/secretbackendrootcert"
 	providerconfig "github.com/crossplane-contrib/provider-jet-vault/internal/controller/providerconfig"
 )
 
@@ -34,6 +35,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		secret.Setup,
 		mount.Setup,
 		secretbackendconfigurls.Setup,
+		secretbackendrootcert.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
