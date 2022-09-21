@@ -28,6 +28,7 @@ import (
 	secretbackendrootcert "github.com/crossplane-contrib/provider-jet-vault/internal/controller/pki/secretbackendrootcert"
 	policy "github.com/crossplane-contrib/provider-jet-vault/internal/controller/policy/policy"
 	providerconfig "github.com/crossplane-contrib/provider-jet-vault/internal/controller/providerconfig"
+	authbackendrole "github.com/crossplane-contrib/provider-jet-vault/internal/controller/token/authbackendrole"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -41,6 +42,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		secretbackendrootcert.Setup,
 		policy.Setup,
 		providerconfig.Setup,
+		authbackendrole.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

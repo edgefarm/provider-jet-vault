@@ -27,6 +27,7 @@ import (
 	"github.com/crossplane-contrib/provider-jet-vault/config/mount"
 	"github.com/crossplane-contrib/provider-jet-vault/config/pki"
 	"github.com/crossplane-contrib/provider-jet-vault/config/policy"
+	"github.com/crossplane-contrib/provider-jet-vault/config/token"
 )
 
 const (
@@ -40,19 +41,22 @@ var providerSchema string
 // IncludedResources lists all resource patterns included in small set release.
 var IncludedResources = []string{
 
-	// vault_generic
+	// vault_generic*
 	"vault_generic_secret$",
 
-	// vault_mount
+	// vault_mount*
 	"vault_mount$",
 
-	// vault_pki_secret_backend
+	// vault_pki*
 	"vault_pki_secret_backend_config_urls$",
 	"vault_pki_secret_backend_root_cert$",
 	"vault_pki_secret_backend_role$",
 
-	// vault policy
+	// vault_policy*
 	"vault_policy$",
+
+	// vault_token*
+	"vault_token_auth_backend_role$",
 }
 
 // GetProvider returns provider configuration
@@ -73,6 +77,7 @@ func GetProvider() *tjconfig.Provider {
 		mount.Configure,
 		pki.Configure,
 		policy.Configure,
+		token.Configure,
 	} {
 		configure(pc)
 	}

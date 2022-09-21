@@ -1,0 +1,16 @@
+apiVersion: token.vault.jet.crossplane.io/v1alpha1
+kind: AuthBackendRole
+metadata:
+  name: "token-example-auth-backend-role"
+spec:
+  forProvider:
+    roleName: "my-role"
+    allowedPolicies: ["dev", "test"]
+    disallowedPolicies: ["default"]
+    allowedEntityAliases: ["test_entity"]
+    orphan: true
+    tokenPeriod: 86400
+    renewable: true
+    tokenExplicitMaxTtl: 115200
+    pathSuffix: "path-suffix"  
+---
