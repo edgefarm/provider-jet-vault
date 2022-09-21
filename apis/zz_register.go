@@ -25,6 +25,7 @@ import (
 	v1alpha1 "github.com/crossplane-contrib/provider-jet-vault/apis/generic/v1alpha1"
 	v1alpha1mount "github.com/crossplane-contrib/provider-jet-vault/apis/mount/v1alpha1"
 	v1alpha1pki "github.com/crossplane-contrib/provider-jet-vault/apis/pki/v1alpha1"
+	v1alpha1policy "github.com/crossplane-contrib/provider-jet-vault/apis/policy/v1alpha1"
 	v1alpha1apis "github.com/crossplane-contrib/provider-jet-vault/apis/v1alpha1"
 )
 
@@ -34,6 +35,7 @@ func init() {
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1alpha1mount.SchemeBuilder.AddToScheme,
 		v1alpha1pki.SchemeBuilder.AddToScheme,
+		v1alpha1policy.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 	)
 }

@@ -1,0 +1,13 @@
+---
+apiVersion: policy.vault.jet.crossplane.io/v1alpha1
+kind: Policy
+metadata:
+  name: policy-example
+spec:
+  forProvider:
+    name: "policy-example"
+    policy: |-     
+      path "secret/my_app" {
+        capabilities = ["update"]
+      }
+
