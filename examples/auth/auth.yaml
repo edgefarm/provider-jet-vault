@@ -1,0 +1,12 @@
+---
+apiVersion: auth.vault.jet.crossplane.io/v1alpha1
+kind: Backend
+metadata:
+  name: auth-backend-example
+spec:
+  forProvider:
+    type: "github"
+    tune: 
+      - maxLeaseTtl: "90000s"
+        listingVisibility: "unauth"
+

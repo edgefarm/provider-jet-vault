@@ -23,7 +23,9 @@ import (
 	tjconfig "github.com/crossplane/terrajet/pkg/config"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
+	"github.com/crossplane-contrib/provider-jet-vault/config/auth"
 	"github.com/crossplane-contrib/provider-jet-vault/config/generic"
+	"github.com/crossplane-contrib/provider-jet-vault/config/kubernetes"
 	"github.com/crossplane-contrib/provider-jet-vault/config/mount"
 	"github.com/crossplane-contrib/provider-jet-vault/config/pki"
 	"github.com/crossplane-contrib/provider-jet-vault/config/policy"
@@ -40,9 +42,14 @@ var providerSchema string
 
 // IncludedResources lists all resource patterns included in small set release.
 var IncludedResources = []string{
+	// vault_auth*
+	"vault_auth_backend$",
 
 	// vault_generic*
 	"vault_generic_secret$",
+
+	// vault_kubernetes*
+	"vault_kubernetes_auth_backend_config",
 
 	// vault_mount*
 	"vault_mount$",
@@ -73,7 +80,9 @@ func GetProvider() *tjconfig.Provider {
 		tjconfig.WithIncludeList(IncludedResources))
 
 	for _, configure := range []func(provider *tjconfig.Provider){
+		auth.Configure,
 		generic.Configure,
+		kubernetes.Configure,
 		mount.Configure,
 		pki.Configure,
 		policy.Configure,

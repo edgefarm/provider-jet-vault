@@ -21,7 +21,9 @@ import (
 
 	"github.com/crossplane/terrajet/pkg/controller"
 
+	backend "github.com/crossplane-contrib/provider-jet-vault/internal/controller/auth/backend"
 	secret "github.com/crossplane-contrib/provider-jet-vault/internal/controller/generic/secret"
+	authbackendconfig "github.com/crossplane-contrib/provider-jet-vault/internal/controller/kubernetes/authbackendconfig"
 	mount "github.com/crossplane-contrib/provider-jet-vault/internal/controller/mount/mount"
 	secretbackendconfigurls "github.com/crossplane-contrib/provider-jet-vault/internal/controller/pki/secretbackendconfigurls"
 	secretbackendrole "github.com/crossplane-contrib/provider-jet-vault/internal/controller/pki/secretbackendrole"
@@ -35,7 +37,9 @@ import (
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
+		backend.Setup,
 		secret.Setup,
+		authbackendconfig.Setup,
 		mount.Setup,
 		secretbackendconfigurls.Setup,
 		secretbackendrole.Setup,

@@ -10,7 +10,7 @@ export TERRAFORM_PROVIDER_SOURCE := hashicorp/vault
 export TERRAFORM_PROVIDER_VERSION := 3.8.2
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-vault
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX := https://releases.hashicorp.com/terraform-provider-vault/3.8.2
-export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-vault_v3.8.2
+export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-vault_v3.8.2_x5
 
 PLATFORMS ?= linux_amd64 linux_arm64
 

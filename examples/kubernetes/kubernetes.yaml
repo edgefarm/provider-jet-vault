@@ -1,0 +1,28 @@
+---
+apiVersion: auth.vault.jet.crossplane.io/v1alpha1
+kind: Backend
+metadata:
+  name: kubernetes-auth-example
+spec:
+  forProvider:
+    type: "kubernetes"
+    path: "kubernetes-auth-example"
+    tune: 
+      - maxLeaseTtl: "90000s"
+        listingVisibility: "unauth"
+---
+apiVersion: kubernetes.vault.jet.crossplane.io/v1alpha1
+kind: AuthBackendConfig
+metadata:
+  name: "kubernetes-auth-example"
+spec:
+  forProvider:
+    kubernetesHost: "http://example.com:443"
+    kubernetesCaCert: |
+      -----BEGIN CERTIFICATE-----
+      yourcert
+      -----END CERTIFICATE-----
+    issuer: "api"
+    disableIssValidation: true
+    backendRef:
+      name: kubernetes-auth-example
