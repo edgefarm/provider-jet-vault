@@ -23,6 +23,8 @@ import (
 
 	backend "github.com/crossplane-contrib/provider-jet-vault/internal/controller/auth/backend"
 	secret "github.com/crossplane-contrib/provider-jet-vault/internal/controller/generic/secret"
+	group "github.com/crossplane-contrib/provider-jet-vault/internal/controller/identity/group"
+	groupalias "github.com/crossplane-contrib/provider-jet-vault/internal/controller/identity/groupalias"
 	authbackendconfig "github.com/crossplane-contrib/provider-jet-vault/internal/controller/kubernetes/authbackendconfig"
 	mount "github.com/crossplane-contrib/provider-jet-vault/internal/controller/mount/mount"
 	secretbackendconfigurls "github.com/crossplane-contrib/provider-jet-vault/internal/controller/pki/secretbackendconfigurls"
@@ -39,6 +41,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
 		backend.Setup,
 		secret.Setup,
+		group.Setup,
+		groupalias.Setup,
 		authbackendconfig.Setup,
 		mount.Setup,
 		secretbackendconfigurls.Setup,

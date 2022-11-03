@@ -1,0 +1,36 @@
+---
+apiVersion: auth.vault.jet.crossplane.io/v1alpha1
+kind: Backend
+metadata:
+  name: identity-example-backend
+spec:
+  forProvider:
+    type: "kubernetes"
+    path: "kubernetes-auth-example"
+    tune: 
+      - maxLeaseTtl: "90000s"
+        listingVisibility: "unauth"
+---
+apiVersion: identity.vault.jet.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: identity-example-group
+spec:
+  forProvider:
+    name: "identity-example-group"
+    type: "external"
+    policies:
+    - "test"
+---
+apiVersion: identity.vault.jet.crossplane.io/v1alpha1
+kind: GroupAlias
+metadata:
+  name: identity-example-groupalias
+spec:
+  forProvider:
+    name: identity-example-groupalias
+    mountAccessorRef:
+      name: identity-example-backend
+    canonicalIdRef:
+      name: identity-example-group
+---

@@ -25,6 +25,7 @@ import (
 
 	"github.com/crossplane-contrib/provider-jet-vault/config/auth"
 	"github.com/crossplane-contrib/provider-jet-vault/config/generic"
+	"github.com/crossplane-contrib/provider-jet-vault/config/identity"
 	"github.com/crossplane-contrib/provider-jet-vault/config/kubernetes"
 	"github.com/crossplane-contrib/provider-jet-vault/config/mount"
 	"github.com/crossplane-contrib/provider-jet-vault/config/pki"
@@ -47,6 +48,10 @@ var IncludedResources = []string{
 
 	// vault_generic*
 	"vault_generic_secret$",
+
+	// vault_identity*
+	"vault_identity_group$",
+	"vault_identity_group_alias$",
 
 	// vault_kubernetes*
 	"vault_kubernetes_auth_backend_config",
@@ -82,6 +87,7 @@ func GetProvider() *tjconfig.Provider {
 	for _, configure := range []func(provider *tjconfig.Provider){
 		auth.Configure,
 		generic.Configure,
+		identity.Configure,
 		kubernetes.Configure,
 		mount.Configure,
 		pki.Configure,

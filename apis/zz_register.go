@@ -24,6 +24,7 @@ import (
 
 	v1alpha1 "github.com/crossplane-contrib/provider-jet-vault/apis/auth/v1alpha1"
 	v1alpha1generic "github.com/crossplane-contrib/provider-jet-vault/apis/generic/v1alpha1"
+	v1alpha1identity "github.com/crossplane-contrib/provider-jet-vault/apis/identity/v1alpha1"
 	v1alpha1kubernetes "github.com/crossplane-contrib/provider-jet-vault/apis/kubernetes/v1alpha1"
 	v1alpha1mount "github.com/crossplane-contrib/provider-jet-vault/apis/mount/v1alpha1"
 	v1alpha1pki "github.com/crossplane-contrib/provider-jet-vault/apis/pki/v1alpha1"
@@ -37,6 +38,7 @@ func init() {
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1alpha1generic.SchemeBuilder.AddToScheme,
+		v1alpha1identity.SchemeBuilder.AddToScheme,
 		v1alpha1kubernetes.SchemeBuilder.AddToScheme,
 		v1alpha1mount.SchemeBuilder.AddToScheme,
 		v1alpha1pki.SchemeBuilder.AddToScheme,
